@@ -70,7 +70,7 @@ class Thing extends \ArrayObject
 
         $this->offsetSet($name, null);
 
-        if (PHP_VERSION_ID < 50400) {// NOTE: Closure::bindTo is PHP >= 5.4
+        if (PHP_VERSION_ID < 50400 || !$hook instanceof \Closure) {// NOTE: Closure::bindTo is PHP >= 5.4
             $this->hooks[$name] = $hook;
         } else {
             $this->hooks[$name] = $hook->bindTo($this);
